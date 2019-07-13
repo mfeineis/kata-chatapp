@@ -4,6 +4,7 @@ import App.Page as Page exposing (Intent(..), Model)
 import App.Stream as Stream
 import Browser
 import Html
+import Html.Attributes as Attr
 import Json.Decode exposing (Value)
 import Task
 
@@ -40,7 +41,7 @@ interpret intent model =
 
 main : Program Value Model Msg
 main =
-    Browser.document
+    Browser.element
         { init = init
         , subscriptions = \_ -> Sub.none
         , update =
@@ -57,9 +58,11 @@ main =
                     { title, body } =
                         Page.view model
                 in
-                { title = title
-                , body = List.map (Html.map Intent) body
-                }
+                Html.div
+                    [ Attr.id "root"
+                    , Attr.style "height" "100%"
+                    ]
+                    (List.map (Html.map Intent) body)
         }
 
 
