@@ -13,6 +13,7 @@
   "author": "Martin Feineis <mfeineis@users.noreply.github.com>",
   "license": "BSD-3-Clause",
   "devDependencies": {
-    "elm": "^0.19.0-no-deps"
+    "elm": "^0.19.0-no-deps",
+    "serve": "^11.1.0"
   }
 }
