@@ -176,21 +176,6 @@ body {
     overflow-y: auto;
     width: 300px;
 }
-.stream-panel__streams {
-    display: flex;
-    flex-direction: column;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-.stream-panel__stream {
-    line-height: 50px;
-}
-.stream-panel__stream-topics {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
 .detail-panel {
     background-color: #fafafa;
     border-right: #eee 1px solid;
