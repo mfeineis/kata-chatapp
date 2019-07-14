@@ -42,11 +42,11 @@ view model =
 header _ =
     div [ class "header panel-menu" ]
         [ div [ class "panel-menu__title" ] [ text "Almanac" ]
-        , div [ class "panel-menu__search" ]
+        , div [ class "panel-menu__textfield" ]
             [ input [ placeholder "What are you looking for?" ] []
             ]
         , div [ class "panel-menu__menu" ]
-            [ button [ class "btn btn--menu" ]
+            [ button [ class "btn btn--icon" ]
                 [ text "🍔"
                 , span [ class "pill pill--sup pill--primary" ] [ text "3" ]
                 ]
@@ -58,30 +58,30 @@ toolPanel _ =
     div [ class "tool-panel" ]
         [ ol [ class "tool-panel__items" ]
             [ li [ class "tool-panel__item" ]
-                [ button [ class "btn btn--menu" ]
+                [ button [ class "btn btn--icon" ]
                     [ text "\u{1F9EA}"
                     ]
                 ]
             , li [ class "tool-panel__item" ]
-                [ button [ class "btn btn--menu" ]
+                [ button [ class "btn btn--icon" ]
                     [ text "👔"
                     , span [ class "pill pill--sup" ] [ text "1" ]
                     ]
                 ]
             , li [ class "tool-panel__item" ]
-                [ button [ class "btn btn--menu" ]
+                [ button [ class "btn btn--icon" ]
                     [ text "👕"
                     ]
                 ]
             , li [ class "tool-panel__item" ]
-                [ button [ class "btn btn--menu" ]
+                [ button [ class "btn btn--icon" ]
                     [ text "👗"
                     ]
                 ]
             ]
         , ol [ class "tool-panel__tools" ]
             [ li [ class "tool-panel__item" ]
-                [ button [ class "btn btn--menu" ]
+                [ button [ class "btn btn--icon" ]
                     [ text "⚙️"
                     ]
                 ]
@@ -167,7 +167,7 @@ detailPanel _ =
                 ]
             , li []
                 [ button
-                    [ class "btn btn--menu"
+                    [ class "btn btn--icon"
                     , disabled True
                     ]
                     [ text "🖌"
@@ -175,14 +175,14 @@ detailPanel _ =
                 ]
             , li []
                 [ button
-                    [ class "btn btn--primary"
+                    [ class "btn btn--primary btn--icon"
                     ]
                     [ text "💡"
                     ]
                 ]
             , li [ class "panel-menu__spacer" ] []
             , li [ class "panel-menu__menu" ]
-                [ button [ class "btn btn--menu" ]
+                [ button [ class "btn btn--icon" ]
                     [ text "🍔"
                     ]
                 ]
@@ -221,12 +221,19 @@ threadPanel _ =
         [ ol [ class "panel-menu" ]
             [ li [ class "panel-menu__spacer" ] []
             , li [ class "panel-menu__menu" ]
-                [ button [ class "btn btn--menu" ]
+                [ button [ class "btn btn--icon" ]
                     [ text "🐣"
                     ]
                 ]
             ]
         , div [ class "panel-content" ]
             [ text "Content"
+            ]
+        , div [ class "panel-menu panel-menu--footer" ]
+            [  div [ class "panel-menu__textfield" ]
+                [ input [ placeholder "Write something!" ] []
+                ]
+            , button [ class "btn btn--primary btn--icon" ]
+                [ text "📬" ]
             ]
         ]
