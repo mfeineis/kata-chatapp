@@ -20,11 +20,11 @@ view model =
     { title = "Chat"
     , body =
         [ div [ class "layout" ]
-            [ toolPanel model
-            , div [ class "layout-content" ]
+            [ div [ class "layout-content" ]
                 [ header model
                 , Html.section [ class "main-content", Attr.attribute "role" "main" ]
-                    [ toolPanelMenu model
+                    [ toolPanel model
+                    , toolPanelMenu model
                     , streamPanel model
                     , detailPanel model
                     , threadPanel model
@@ -40,7 +40,7 @@ view model =
 
 
 header _ =
-    div [ class "header panel-menu" ]
+    div [ class "panel-menu panel-menu--header" ]
         [ div [ class "panel-menu__title" ] [ text "Almanac" ]
         , div [ class "panel-menu__textfield" ]
             [ input [ placeholder "What are you looking for?" ] []

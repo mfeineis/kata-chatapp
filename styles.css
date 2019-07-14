@@ -120,8 +120,6 @@ body {
     white-space: nowrap;
 }
 
-.header {
-}
 .layout {
     display: flex;
     position: relative;
@@ -215,6 +213,10 @@ body {
     line-height: 50px;
     margin: 0;
     padding: 0 0 0 5px;
+}
+.panel-menu--header {
+    background: linear-gradient(30deg, #60b5cc, #7fd13b);
+    border-bottom: #60b5cc 2px solid;
 }
 .panel-menu--footer {
     padding-left: 5px;
