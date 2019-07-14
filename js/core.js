@@ -89,6 +89,7 @@ greeshka(function (add, window) {
     });
 
     return function finalize(_, Y, Core) {
+        delete window.greeshka;
         Y.expose("Core", Object.freeze({
             widget: function widget(fn) {
                 Core.use(function (use) {
