@@ -114,7 +114,10 @@ body {
 }
 .menu-entry__label {
     flex-grow: 1;
+    overflow: hidden;
     text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .header {
@@ -294,7 +297,10 @@ body {
 }
 .stream-item__label {
     flex-grow: 1;
+    overflow: hidden;
     text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .stream-item__adornment {
 }
