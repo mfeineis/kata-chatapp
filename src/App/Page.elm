@@ -135,7 +135,7 @@ streamItem stream =
             [ span [ class "stream-item__icon" ] [ text "💢" ]
             , span [ class "stream-item__label" ] [ text (Stream.name stream) ]
             , span [ class "stream-item__adornment" ]
-                [ span [ class "inline-pill" ]
+                [ span [ class "inline-pill pill--primary" ]
                     [ text "1" ]
                 ]
             ]

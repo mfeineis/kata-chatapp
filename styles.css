@@ -307,6 +307,18 @@ body {
     height: 20px;
     width: 20px;
 }
+.inline-pill {
+    background: #eee;
+    border: #fff 1px solid;
+    border-radius: 25px;
+    display: inline-block;
+    height: 25px;
+    line-height: 20px;
+    margin-top: -5px;
+    text-align: center;
+    vertical-align: baseline;
+    width: 25px;
+}
 .pill--sup {
     display: block;
     font-size: 10px;
@@ -319,18 +331,6 @@ body {
 .pill--primary {
     background: #95FF30;
     color: #fff;
-}
-.inline-pill {
-    background: #eee;
-    border: #fff 1px solid;
-    border-radius: 25px;
-    display: inline-block;
-    height: 25px;
-    line-height: 20px;
-    margin-top: -5px;
-    text-align: center;
-    vertical-align: baseline;
-    width: 25px;
 }
 
 .theme--compact {
