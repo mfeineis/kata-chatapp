@@ -162,25 +162,7 @@ detailPanel : a -> Html Intent
 detailPanel _ =
     div [ class "detail-panel" ]
         [ ol [ class "panel-menu" ]
-            [ li [ class "panel-menu__title" ]
-                [ text "Some Menu"
-                ]
-            , li []
-                [ button
-                    [ class "btn btn--icon"
-                    , disabled True
-                    ]
-                    [ text "🖌"
-                    ]
-                ]
-            , li []
-                [ button
-                    [ class "btn btn--primary btn--icon"
-                    ]
-                    [ text "💡"
-                    ]
-                ]
-            , li [ class "panel-menu__spacer" ] []
+            [ li [ class "panel-menu__spacer" ] []
             , li [ class "panel-menu__menu" ]
                 [ button [ class "btn btn--icon" ]
                     [ text "🍔"
@@ -219,7 +201,25 @@ threadPanel : a -> Html Intent
 threadPanel _ =
     div [ class "thread-panel" ]
         [ ol [ class "panel-menu" ]
-            [ li [ class "panel-menu__spacer" ] []
+            [ li []
+                [ button
+                    [ class "btn btn--icon"
+                    , disabled True
+                    ]
+                    [ text "🖌"
+                    ]
+                ]
+            , li []
+                [ button
+                    [ class "btn btn--primary btn--icon"
+                    ]
+                    [ text "💡"
+                    ]
+                ]
+            , li [ class "panel-menu__title" ]
+                [ text "Conversation"
+                ]
+            , li [ class "panel-menu__spacer" ] []
             , li [ class "panel-menu__menu" ]
                 [ button [ class "btn btn--icon" ]
                     [ text "🐣"
