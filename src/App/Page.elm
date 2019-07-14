@@ -131,7 +131,7 @@ streamPanel { streams } =
 streamItem : Stream -> Html Intent
 streamItem stream =
     li [ class "tool-panel__item" ]
-        [ button [ class "stream-item" ]
+        [ button [ class "stream-item stream-item--highlighted" ]
             [ span [ class "stream-item__icon" ] [ text "💢" ]
             , span [ class "stream-item__label" ] [ text (Stream.name stream) ]
             , span [ class "stream-item__adornment" ]
