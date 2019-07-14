@@ -48,6 +48,7 @@ header _ =
         , div [ class "panel-menu__menu" ]
             [ button [ class "btn btn--menu" ]
                 [ text "🍔"
+                , span [ class "pill pill--sup pill--primary" ] [ text "3" ]
                 ]
             ]
         ]
@@ -64,6 +65,7 @@ toolPanel _ =
             , li [ class "tool-panel__item" ]
                 [ button [ class "btn btn--menu" ]
                     [ text "👔"
+                    , span [ class "pill pill--sup" ] [ text "1" ]
                     ]
                 ]
             , li [ class "tool-panel__item" ]
@@ -132,6 +134,10 @@ streamItem stream =
         [ button [ class "stream-item" ]
             [ span [ class "stream-item__icon" ] [ text "💢" ]
             , span [ class "stream-item__label" ] [ text (Stream.name stream) ]
+            , span [ class "stream-item__adornment" ]
+                [ span [ class "inline-pill" ]
+                    [ text "1" ]
+                ]
             ]
         , ol [ class "tool-panel__items" ]
             (List.map topicItem (Stream.topics stream))
