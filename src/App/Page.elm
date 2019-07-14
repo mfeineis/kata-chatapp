@@ -90,7 +90,7 @@ toolPanel _ =
 
 
 toolPanelMenu _ =
-    div [ class "tool-panel__menu" ]
+    div [ class "tool-panel__menu x-tool-panel__menu--floating" ]
         [ ol [ class "tool-panel__items" ]
             [ li [ class "tool-panel__item" ]
                 [ button [ class "menu-entry" ]

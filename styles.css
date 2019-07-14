@@ -118,6 +118,7 @@ body {
 }
 .layout {
     display: flex;
+    position: relative;
 }
 .layout-content {
     flex-grow: 1;
@@ -142,6 +143,14 @@ body {
     max-width: 300px;
     min-width: 200px;
     overflow-y: auto;
+}
+.tool-panel__menu--floating {
+    position: absolute;
+    z-index: 2;
+    height: 100%;
+    background: #fff;
+    left: 50px;
+    box-shadow: 2px 0px 3px #ccc;
 }
 .tool-panel__items {
     display: flex;
