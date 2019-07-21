@@ -1,5 +1,6 @@
 module App.Page exposing (Intent(..), Model, view)
 
+import App.Layout as Layout
 import App.Stream as Stream exposing (Stream, Topic)
 import Browser
 import Html exposing (Html, button, div, input, li, ol, span, text)
@@ -19,10 +20,10 @@ view : Model -> Browser.Document Intent
 view model =
     { title = "Chat"
     , body =
-        [ div [ class "layout" ]
-            [ div [ class "layout-content" ]
+        [ Layout.layout []
+            [ Layout.layoutContent []
                 [ header model
-                , Html.section [ class "main-content", Attr.attribute "role" "main" ]
+                , Layout.mainContent [ Attr.attribute "role" "main" ]
                     [ toolPanel model
                     , toolPanelMenu model
                     , streamPanel model
@@ -93,23 +94,23 @@ toolPanelMenu _ =
     div [ class "tool-panel__menu x-tool-panel__menu--floating" ]
         [ ol [ class "tool-panel__items" ]
             [ li [ class "tool-panel__item" ]
-                [ button [ class "menu-entry" ]
-                    [ span [ class "menu-entry__icon" ] [ text "\u{1F9F6}" ]
-                    , span [ class "menu-entry__label" ] [ text "Do Something" ]
+                [ Layout.menuEntry []
+                    [ Layout.menuEntryIcon [] [ text "\u{1F9F6}" ]
+                    , Layout.menuEntryLabel [] [ text "Do Something" ]
                     ]
                 ]
             , li [ class "tool-panel__item" ]
-                [ button [ class "menu-entry" ]
-                    [ span [ class "menu-entry__icon" ] [ text "\u{1F9F8}" ]
-                    , span [ class "menu-entry__label" ] [ text "Do Another Thing" ]
+                [ Layout.menuEntry []
+                    [ Layout.menuEntryIcon [] [ text "\u{1F9F8}" ]
+                    , Layout.menuEntryLabel [] [ text "Do Another Thing" ]
                     ]
                 ]
             ]
         , ol [ class "tool-panel__tools" ]
             [ li [ class "tool-panel__item" ]
-                [ button [ class "menu-entry" ]
-                    [ span [ class "menu-entry__icon" ] [ text "\u{1F97C}" ]
-                    , span [ class "menu-entry__label" ] [ text "Experimental" ]
+                [ Layout.menuEntry []
+                    [ Layout.menuEntryIcon [] [ text "\u{1F97C}" ]
+                    , Layout.menuEntryLabel [] [ text "Experimental" ]
                     ]
                 ]
             ]
@@ -131,9 +132,9 @@ streamPanel { streams } =
 streamItem : Stream -> Html Intent
 streamItem stream =
     li [ class "tool-panel__item" ]
-        [ button [ class "stream-item stream-item--highlighted" ]
-            [ span [ class "stream-item__icon" ] [ text "💢" ]
-            , span [ class "stream-item__label" ] [ text (Stream.name stream) ]
+        [ Layout.streamItem [ class "stream-item--highlighted" ]
+            [ Layout.streamItemIcon [] [ text "💢" ]
+            , Layout.streamItemLabel [] [ text (Stream.name stream) ]
             , span [ class "stream-item__adornment" ]
                 [ span [ class "inline-pill pill--primary" ]
                     [ text "1" ]
@@ -147,9 +148,9 @@ streamItem stream =
 topicItem : Topic -> Html Intent
 topicItem name =
     li [ class "tool-panel__item tool-panel__item" ]
-        [ button [ class "stream-item stream-item--sub" ]
-            [ span [ class "stream-item__icon" ] [ text "📎" ]
-            , span [ class "stream-item__label" ] [ text (Stream.topicName name) ]
+        [ Layout.streamItem [ class "stream-item--sub" ]
+            [ Layout.streamItemIcon [] [ text "📎" ]
+            , Layout.streamItemLabel [] [ text (Stream.topicName name) ]
             ]
         ]
 
@@ -230,7 +231,7 @@ threadPanel _ =
             [ text "Content"
             ]
         , div [ class "panel-menu panel-menu--footer" ]
-            [  div [ class "panel-menu__textfield" ]
+            [ div [ class "panel-menu__textfield" ]
                 [ input [ placeholder "Write something!" ] []
                 ]
             , button [ class "btn btn--primary btn--icon" ]
