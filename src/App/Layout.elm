@@ -79,31 +79,28 @@ globalStyles =
             , height (calc (vh 100) minus (px 50))
             , overflow hidden
             ]
-        , (\_ ->
-            let
-                hoverStyles =
-                    [ backgroundColor (hex "fafafa")
-                    ]
-            in
-            class (toClassName (MenuEntry Default))
-                [ backgroundColor (hex "f5f5f5")
-                , border zero
-                , borderBottom3 (px 1) solid (hex "eeeee")
-                , cursor pointer
-                , displayFlex
-                , lineHeight (px 50)
-                , padding4 zero (px 20) zero zero
-                , position relative
-                , textAlign left
-                , textOverflow ellipsis
-                , whiteSpace noWrap
-                , width (pct 100)
-                , active hoverStyles
-                , focus hoverStyles
-                , hover hoverStyles
+        , let
+            hoverStyles =
+                [ backgroundColor (hex "fafafa")
                 ]
-          )
-            ()
+          in
+          class (toClassName (MenuEntry Default))
+            [ backgroundColor (hex "f5f5f5")
+            , border zero
+            , borderBottom3 (px 1) solid (hex "eeeee")
+            , cursor pointer
+            , displayFlex
+            , lineHeight (px 50)
+            , padding4 zero (px 20) zero zero
+            , position relative
+            , textAlign left
+            , textOverflow ellipsis
+            , whiteSpace noWrap
+            , width (pct 100)
+            , active hoverStyles
+            , focus hoverStyles
+            , hover hoverStyles
+            ]
         , class (toClassName (MenuEntry Icon))
             [ flex (num 1)
             , minWidth (px 50)
@@ -116,30 +113,28 @@ globalStyles =
             , textOverflow ellipsis
             , whiteSpace noWrap
             ]
-        , (\_ ->
-            let
-                hoverStyles =
-                  [ backgroundColor (hex "f5f5f5")
-                  ]
-            in
-            class (toClassName (StreamItem Default))
-                [ backgroundColor transparent
-                , border zero
-                , borderBottom3 (px 1) solid (hex "eeeeee")
-                , cursor pointer
-                , displayFlex
-                , lineHeight (px 50)
-                , padding4 zero (px 20) zero zero
-                , position relative
-                , textAlign left
-                , textOverflow ellipsis
-                , whiteSpace noWrap
-                , width (pct 100)
-                , active hoverStyles
-                , focus hoverStyles
-                , hover hoverStyles
+        , let
+            hoverStyles =
+                [ backgroundColor (hex "f5f5f5")
                 ]
-          ) ()
+          in
+          class (toClassName (StreamItem Default))
+            [ backgroundColor transparent
+            , border zero
+            , borderBottom3 (px 1) solid (hex "eeeeee")
+            , cursor pointer
+            , displayFlex
+            , lineHeight (px 50)
+            , padding4 zero (px 20) zero zero
+            , position relative
+            , textAlign left
+            , textOverflow ellipsis
+            , whiteSpace noWrap
+            , width (pct 100)
+            , active hoverStyles
+            , focus hoverStyles
+            , hover hoverStyles
+            ]
         , class (toClassName (StreamItem Icon))
             [ flexShrink (num 1)
             , minWidth (px 50)
