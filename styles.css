@@ -298,10 +298,10 @@ body {
     top: 0;
     width: 5px;
 }
+/*
 .stream-item--highlighted {
     font-weight: bold;
 }
-/*
 .stream-item__icon {
     flex-shrink: 1;
     text-align: center;
@@ -315,8 +315,6 @@ body {
     white-space: nowrap;
 }
 */
-.stream-item__adornment {
-}
 .pill {
     background: #eee;
     border: #fff 1px solid;

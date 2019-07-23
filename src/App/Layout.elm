@@ -8,6 +8,8 @@ module App.Layout exposing
     , streamItem
     , streamItemIcon
     , streamItemLabel
+    , streamItemHighlighted
+    , streamItemSub
     )
 
 import Css exposing (..)
@@ -23,6 +25,8 @@ type Block
     | MainContent
     | MenuEntry MenuEntryElement
     | StreamItem MenuEntryElement
+    | StreamItemHighlighted
+    | StreamItemSub
 
 
 type MenuEntryElement
@@ -31,37 +35,51 @@ type MenuEntryElement
     | Label
 
 
-toClassName : Block -> String
-toClassName block =
+toClassNames : Block -> List String
+toClassNames block =
     (case block of
         Layout ->
-            "layout"
+            [ "layout" ]
 
         LayoutContent ->
-            "layout-content"
+            [ "layout-content" ]
 
         MainContent ->
-            "main-content"
+            [ "main-content" ]
 
         MenuEntry Default ->
-            "menu-entry"
+            [ "menu-entry" ]
 
         MenuEntry Icon ->
-            "menu-icon__icon"
+            [ "menu-icon__icon" ]
 
         MenuEntry Label ->
-            "menu-icon__label"
+            [ "menu-icon__label" ]
 
         StreamItem Default ->
-            "stream-item"
+            [ "stream-item" ]
 
         StreamItem Icon ->
-            "stream-item__icon"
+            [ "stream-item__icon" ]
 
         StreamItem Label ->
-            "stream-item__label"
+            [ "stream-item__label" ]
+
+        StreamItemHighlighted ->
+            [ "stream-item", "stream-item--highlighted" ]
+
+        StreamItemSub ->
+            [ "stream-item", "stream-item--sub" ]
     )
-        |> (\it -> "ui-" ++ it)
+        --|> (\it -> "ui-" ++ it)
+
+
+toClassName : Block -> String
+toClassName block =
+    toClassNames block
+        |> List.reverse
+        |> List.head
+        |> Maybe.withDefault ""
 
 
 globalStyles : Html msg
@@ -147,6 +165,22 @@ globalStyles =
             , textOverflow ellipsis
             , whiteSpace noWrap
             ]
+        , class (toClassName StreamItemHighlighted)
+            [ fontWeight bold
+            ]
+        --, class (toClassName StreamItemSub)
+        --    [ backgroundColor (hex "fcfcfc")
+        --    , before
+        --        [ backgroundColor (hex "eeeeee")
+        --        , bottom zero
+        --        -- , content " "
+        --        , display block
+        --        , position absolute
+        --        , left zero
+        --        , top zero
+        --        , width (px 5)
+        --        ]
+        --    ]
         ]
         |> Html.Styled.toUnstyled
 
@@ -200,10 +234,19 @@ streamItemLabel =
     bem (StreamItem Label) Html.span
 
 
+streamItemHighlighted : List (Attribute msg) -> List (Html msg) -> Html msg
+streamItemHighlighted =
+    bem StreamItemHighlighted Html.button
+
+
+streamItemSub : List (Attribute msg) -> List (Html msg) -> Html msg
+streamItemSub =
+    bem StreamItemSub Html.button
+
 
 -- HELPERS
 
 
 bem : Block -> (List (Attribute msg) -> List (Html msg) -> Html msg) -> List (Attribute msg) -> List (Html msg) -> Html msg
 bem block tag attrs =
-    tag ([ Attr.class (toClassName block) ] ++ attrs)
+    tag ([ Attr.class (toClassNames block |> String.join " ") ] ++ attrs)

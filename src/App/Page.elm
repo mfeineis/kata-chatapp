@@ -132,10 +132,10 @@ streamPanel { streams } =
 streamItem : Stream -> Html Intent
 streamItem stream =
     li [ class "tool-panel__item" ]
-        [ Layout.streamItem [ class "stream-item--highlighted" ]
+        [ Layout.streamItemHighlighted []
             [ Layout.streamItemIcon [] [ text "💢" ]
             , Layout.streamItemLabel [] [ text (Stream.name stream) ]
-            , span [ class "stream-item__adornment" ]
+            , span []
                 [ span [ class "inline-pill pill--primary" ]
                     [ text "1" ]
                 ]
@@ -148,7 +148,7 @@ streamItem stream =
 topicItem : Topic -> Html Intent
 topicItem name =
     li [ class "tool-panel__item tool-panel__item" ]
-        [ Layout.streamItem [ class "stream-item--sub" ]
+        [ Layout.streamItemSub []
             [ Layout.streamItemIcon [] [ text "📎" ]
             , Layout.streamItemLabel [] [ text (Stream.topicName name) ]
             ]
