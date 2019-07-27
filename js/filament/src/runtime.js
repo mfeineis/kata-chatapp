@@ -3,7 +3,7 @@ export const validateMeta = function (meta) {
     return meta && meta["element"] && meta["fragment"];
 };
 
-export function configureRuntime(configureLoader, customElements, setTimeout, query, router) {
+export function configureRuntime(configureLoader, registerElement, setTimeout, query, router) {
 
     const state = {
         elements: {},
@@ -80,27 +80,23 @@ export function configureRuntime(configureLoader, customElements, setTimeout, qu
             element.proxy = meta.factory.call(null, element, attrs);
         };
 
-        customElements.define(meta.element, class extends HTMLElement {
-            static get observedAttributes() {
+        registerElement(meta.element, Object.create({
+            prototype: HTMLElement.prototype,
+
+            get observedAttributes() {
                 return meta.observe;
-            }
+            },
 
-            constructor() {
-                super();
-
-                this.proxy = null;
-            }
-
-            adoptedCallback() {
+            adoptedCallback: function () {
                 this.proxy && this.proxy.adopted && this.proxy.adopted.call(null, this);
-            }
+            },
 
-            attributeChangedCallback(name, oldValue, newValue) {
+            attributeChangedCallback: function (name, oldValue, newValue) {
                 this.proxy && this.proxy.attributeChanged && this.proxy.attributeChanged.call(null, this, name, oldValue, newValue);
-            }
+            },
 
             // FIXME: This should probably clean up after itself
-            connectedCallback() {
+            connectedCallback: function () {
                 if (meta.factory) {
                     // Fragment already loaded, short-circuiting to avoid
                     // delay and flickering
@@ -116,17 +112,17 @@ export function configureRuntime(configureLoader, customElements, setTimeout, qu
                 // something a registration could provide optionally.
                 // After the fragment factory is called the fragment
                 // itself can take over.
-                requestFragment(meta.element, factory => {
+                requestFragment(meta.element, function (factory) {
                     meta.factory = factory;
                     connectFragment(this, meta);
                 });
-            }
+            },
 
-            disconnectedCallback() {
+            disconnectedCallback: function () {
                 this.proxy && this.proxy.disconnected && this.proxy.disconnected.call(null, this);
                 this.proxy = null;
-            }
-        });
+            },
+        }));
 
         dispatchQueue(state, meta);
     };

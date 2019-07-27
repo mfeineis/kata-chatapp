@@ -2,7 +2,7 @@ import { add, use } from "./loader";
 import { configureRuntime } from "./runtime";
 import { configureRouter } from "./router";
 
-const { customElements, document, history, location, setTimeout } = window;
+const { document, history, location, setTimeout } = window;
 
 const nextTick = function (next) {
     return setTimeout(next, 50);
@@ -15,7 +15,7 @@ const query = function (select) {
 
 const { declare } = configureRuntime(
     use.config,
-    customElements,
+    document.registerElement,
     setTimeout,
     query,
     router
