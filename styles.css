@@ -23,7 +23,7 @@ body {
     height: 100%;
 }
 
-.btn--primary:before {
+.ui-btn--primary:before {
     /*
     border-radius: 5px;
     bottom: 0;
@@ -38,7 +38,7 @@ body {
     top: 0;
     */
 }
-.stream-item--sub:before {
+.ui-stream-item--sub:before {
     /*
     background: #eee;
     bottom: 0;

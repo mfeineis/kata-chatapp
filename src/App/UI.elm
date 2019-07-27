@@ -98,7 +98,7 @@ type ToolPanelElement
 
 toClassNames : Block -> List String
 toClassNames block =
-    case block of
+    (case block of
         Button DefaultButton ->
             [ "btn" ]
 
@@ -207,9 +207,7 @@ toClassNames block =
         ToolPanelMenuFloating ->
             [ "tool-panel__menu", "tool-panel__menu--floating" ]
 
-
-
---|> (\it -> "ui-" ++ it)
+     ) |> List.map (\it -> "ui-" ++ it)
 
 
 toClassName : Block -> String
@@ -390,7 +388,7 @@ globalStyles =
                         [ backgroundColor (hex "ffffff")
                         ]
                   in
-                  typeSelector "input"
+                  input
                     [ backgroundColor (hex "f0f0f0")
                     , flex (num 1)
                     , border zero
