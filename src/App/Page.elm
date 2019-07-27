@@ -1,7 +1,7 @@
 module App.Page exposing (Intent(..), Model, view)
 
-import App.Layout as Layout
 import App.Stream as Stream exposing (Stream, Topic)
+import App.UI as UI exposing (ButtonModifier(..), PillModifier(..))
 import Browser
 import Html exposing (Html, button, div, input, li, ol, span, text)
 import Html.Attributes as Attr exposing (class, disabled, placeholder)
@@ -20,10 +20,10 @@ view : Model -> Browser.Document Intent
 view model =
     { title = "Chat"
     , body =
-        [ Layout.layout []
-            [ Layout.layoutContent []
+        [ UI.layout []
+            [ UI.layoutContent []
                 [ header model
-                , Layout.mainContent [ Attr.attribute "role" "main" ]
+                , UI.mainContent [ Attr.attribute "role" "main" ]
                     [ toolPanel model
                     , toolPanelMenu model
                     , streamPanel model
@@ -41,48 +41,48 @@ view model =
 
 
 header _ =
-    div [ class "panel-menu panel-menu--header" ]
-        [ div [ class "panel-menu__title" ] [ text "Almanac" ]
-        , div [ class "panel-menu__textfield" ]
+    UI.panelMenuHeader []
+        [ UI.panelMenuTitle [] [ text "Almanac" ]
+        , UI.panelMenuTextfield []
             [ input [ placeholder "What are you looking for?" ] []
             ]
-        , div [ class "panel-menu__menu" ]
-            [ button [ class "btn btn--icon" ]
+        , UI.panelMenuMenu []
+            [ UI.button [ IconButton ] []
                 [ text "🍔"
-                , span [ class "pill pill--sup pill--primary" ] [ text "3" ]
+                , UI.pill [ PrimaryPill, SupPill ] [] [ text "3" ]
                 ]
             ]
         ]
 
 
 toolPanel _ =
-    div [ class "tool-panel" ]
-        [ ol [ class "tool-panel__items" ]
-            [ li [ class "tool-panel__item" ]
-                [ button [ class "btn btn--icon" ]
+    UI.toolPanel []
+        [ UI.toolPanelItems []
+            [ UI.toolPanelItem []
+                [ UI.button [ IconButton ] []
                     [ text "\u{1F9EA}"
                     ]
                 ]
-            , li [ class "tool-panel__item" ]
-                [ button [ class "btn btn--icon" ]
+            , UI.toolPanelItem []
+                [ UI.button [ IconButton ] []
                     [ text "👔"
-                    , span [ class "pill pill--sup" ] [ text "1" ]
+                    , UI.pill [ SupPill ] [] [ text "1" ]
                     ]
                 ]
-            , li [ class "tool-panel__item" ]
-                [ button [ class "btn btn--icon" ]
+            , UI.toolPanelItem []
+                [ UI.button [ IconButton ] []
                     [ text "👕"
                     ]
                 ]
-            , li [ class "tool-panel__item" ]
-                [ button [ class "btn btn--icon" ]
+            , UI.toolPanelItem []
+                [ UI.button [ IconButton ] []
                     [ text "👗"
                     ]
                 ]
             ]
-        , ol [ class "tool-panel__tools" ]
-            [ li [ class "tool-panel__item" ]
-                [ button [ class "btn btn--icon" ]
+        , UI.toolPanelTools []
+            [ UI.toolPanelItem []
+                [ UI.button [ IconButton ] []
                     [ text "⚙️"
                     ]
                 ]
@@ -91,26 +91,26 @@ toolPanel _ =
 
 
 toolPanelMenu _ =
-    div [ class "tool-panel__menu x-tool-panel__menu--floating" ]
-        [ ol [ class "tool-panel__items" ]
-            [ li [ class "tool-panel__item" ]
-                [ Layout.menuEntry []
-                    [ Layout.menuEntryIcon [] [ text "\u{1F9F6}" ]
-                    , Layout.menuEntryLabel [] [ text "Do Something" ]
+    UI.toolPanelMenu []
+        [ UI.toolPanelItems []
+            [ UI.toolPanelItem []
+                [ UI.menuEntry []
+                    [ UI.menuEntryIcon [] [ text "\u{1F9F6}" ]
+                    , UI.menuEntryLabel [] [ text "Do Something" ]
                     ]
                 ]
-            , li [ class "tool-panel__item" ]
-                [ Layout.menuEntry []
-                    [ Layout.menuEntryIcon [] [ text "\u{1F9F8}" ]
-                    , Layout.menuEntryLabel [] [ text "Do Another Thing" ]
+            , UI.toolPanelItem []
+                [ UI.menuEntry []
+                    [ UI.menuEntryIcon [] [ text "\u{1F9F8}" ]
+                    , UI.menuEntryLabel [] [ text "Do Another Thing" ]
                     ]
                 ]
             ]
-        , ol [ class "tool-panel__tools" ]
-            [ li [ class "tool-panel__item" ]
-                [ Layout.menuEntry []
-                    [ Layout.menuEntryIcon [] [ text "\u{1F97C}" ]
-                    , Layout.menuEntryLabel [] [ text "Experimental" ]
+        , UI.toolPanelTools []
+            [ UI.toolPanelItem []
+                [ UI.menuEntry []
+                    [ UI.menuEntryIcon [] [ text "\u{1F97C}" ]
+                    , UI.menuEntryLabel [] [ text "Experimental" ]
                     ]
                 ]
             ]
@@ -123,34 +123,35 @@ toolPanelMenu _ =
 
 streamPanel : { a | streams : List Stream } -> Html Intent
 streamPanel { streams } =
-    div [ class "tool-panel__menu" ]
-        [ ol [ class "tool-panel__items" ]
+    UI.toolPanelMenu []
+        [ UI.toolPanelItems []
             (List.map streamItem streams)
         ]
 
 
 streamItem : Stream -> Html Intent
 streamItem stream =
-    li [ class "tool-panel__item" ]
-        [ Layout.streamItemHighlighted []
-            [ Layout.streamItemIcon [] [ text "💢" ]
-            , Layout.streamItemLabel [] [ text (Stream.name stream) ]
+    UI.toolPanelItem []
+        [ UI.streamItemHighlighted []
+            [ UI.streamItemIcon [] [ text "💢" ]
+            , UI.streamItemLabel [] [ text (Stream.name stream) ]
             , span []
-                [ span [ class "inline-pill pill--primary" ]
+                [ UI.pill [ InlinePill, PrimaryPill ]
+                    []
                     [ text "1" ]
                 ]
             ]
-        , ol [ class "tool-panel__items" ]
+        , UI.toolPanelItems []
             (List.map topicItem (Stream.topics stream))
         ]
 
 
 topicItem : Topic -> Html Intent
 topicItem name =
-    li [ class "tool-panel__item tool-panel__item" ]
-        [ Layout.streamItemSub []
-            [ Layout.streamItemIcon [] [ text "📎" ]
-            , Layout.streamItemLabel [] [ text (Stream.topicName name) ]
+    UI.toolPanelItem []
+        [ UI.streamItemSub []
+            [ UI.streamItemIcon [] [ text "📎" ]
+            , UI.streamItemLabel [] [ text (Stream.topicName name) ]
             ]
         ]
 
@@ -161,34 +162,25 @@ topicItem name =
 
 detailPanel : a -> Html Intent
 detailPanel _ =
-    div [ class "detail-panel" ]
-        [ ol [ class "panel-menu" ]
-            [ li [ class "panel-menu__spacer" ] []
-            , li [ class "panel-menu__menu" ]
-                [ button [ class "btn btn--icon" ]
+    UI.detailPanel []
+        [ UI.panelMenu []
+            [ UI.panelMenuSpacing [] []
+            , UI.panelMenuMenu []
+                [ UI.button [ IconButton ] []
                     [ text "🍔"
                     ]
                 ]
             ]
-        , div [ class "panel-content" ]
+        , UI.panelContent []
             [ text "Details..."
-            , button
-                [ disabled True
-                , class "btn btn--primary"
-                ]
+            , UI.button [ PrimaryButton ] [ disabled True ]
                 [ text "A disabled button" ]
             , text "Some more text and finally"
-            , button
-                [ class "btn btn--primary"
-                ]
+            , UI.button [ PrimaryButton ] []
                 [ text "An active button" ]
-            , button
-                [ class "btn btn--primary btn--sm"
-                ]
+            , UI.button [ PrimaryButton, SmallButton ] []
                 [ text "A small button" ]
-            , button
-                [ class "btn btn--primary btn--lg"
-                ]
+            , UI.button [ LargeButton, PrimaryButton ] []
                 [ text "A large button" ]
             ]
         ]
@@ -200,41 +192,36 @@ detailPanel _ =
 
 threadPanel : a -> Html Intent
 threadPanel _ =
-    div [ class "thread-panel" ]
-        [ ol [ class "panel-menu" ]
+    UI.threadPanel []
+        [ UI.panelMenu []
             [ li []
-                [ button
-                    [ class "btn btn--icon"
-                    , disabled True
-                    ]
+                [ UI.button [ IconButton ] [ disabled True ]
                     [ text "🖌"
                     ]
                 ]
             , li []
-                [ button
-                    [ class "btn btn--primary btn--icon"
-                    ]
+                [ UI.button [ IconButton, PrimaryButton ] []
                     [ text "💡"
                     ]
                 ]
-            , li [ class "panel-menu__title" ]
+            , UI.panelMenuTitle []
                 [ text "Conversation"
                 ]
-            , li [ class "panel-menu__spacer" ] []
-            , li [ class "panel-menu__menu" ]
-                [ button [ class "btn btn--icon" ]
+            , UI.panelMenuSpacing [] []
+            , UI.panelMenuMenu []
+                [ UI.button [ IconButton ] []
                     [ text "🐣"
                     ]
                 ]
             ]
-        , div [ class "panel-content" ]
+        , UI.panelContent []
             [ text "Content"
             ]
-        , div [ class "panel-menu panel-menu--footer" ]
-            [ div [ class "panel-menu__textfield" ]
+        , UI.panelMenuFooter []
+            [ UI.panelMenuTextfield []
                 [ input [ placeholder "Write something!" ] []
                 ]
-            , button [ class "btn btn--primary btn--icon" ]
+            , UI.button [ IconButton, PrimaryButton ] []
                 [ text "📬" ]
             ]
         ]
