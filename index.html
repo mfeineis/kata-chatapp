@@ -4,17 +4,20 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, minimum-scale=1.0">
-    <title>Almanac</title>
     <meta name="description" content="Almanac - All Your Information at Your Fingertips">
-    <link rel="stylesheet" type="text/css" href="normalize.min.css?v8.0.1">
-    <link rel="stylesheet" type="text/css" href="styles.css?v1">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: https://fonts.googleapis.com; script-src 'self' 'sha256-uEu+IPLYBj3QlMkJor9TyXzVyx76wlYukRgbLZTfhwo='; font-src data: https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' data: https://fonts.googleapis.com; media-src 'self';">
+    <title>Almanac</title>
+    <link rel="stylesheet" type="text/css" href="assets/normalize.min.css?v8.0.1">
+    <link rel="stylesheet" type="text/css" href="assets/baseline.css?v1">
     <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
-    <script src="assets/greeshka-0.3.3.js"></script>
+    <script src="js/greeshka/dist/greeshka.development.js?v0.3.3"></script>
     <script src="js/core.js?v1"></script>
 </head>
 <body ontouchstart="">
     <div id="root"></div>
-    <script>this.customElements||document.write('<script src="//unpkg.com/document-register-element"><\x2fscript>');</script>
+    <script>this.document.registerElement||document.write("<script src=\"assets/document-register-element.js?v1.14.1\"><\x2fscript>");</script>
+    <script src="js/elm-elements/dist/elm-elements.development.js?v0.1.0"></script>
+    <script src="js/filament/dist/filament.development.js?v0.1.2"></script>
     <script src="dist/app.js?v1"></script>
     <script src="js/main.js?v1"></script>
 </body>
