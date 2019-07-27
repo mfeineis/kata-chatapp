@@ -3,17 +3,31 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "elm make src/App.elm --output dist/app.js",
-    "serve": "serve -p 5000",
-    "start": "elm reactor --port 8000"
+    "build": "yarn run build:elm-elements && yarn run build:filament && yarn run build:greeshka && elm make src/App.elm --output dist/app.js",
+    "build:elm-elements": "mkdir -p ./js/elm-elements/dist && cp ./js/elm-elements/src/elm-elements.js ./js/elm-elements/dist/elm-elements.development.js",
+    "build:filament": "NODE_ENV=production $(npm bin)/rollup --config js/filament/rollup.config.js",
+    "build:greeshka": "cp ./js/greeshka/src/greeshka.js ./js/greeshka/dist/greeshka.development.js && NODE_ENV=production terser ./js/greeshka/src/greeshka.js -o ./js/greeshka/dist/greeshka.js --mangle --compress --mangle-props keep_quoted",
+    "start": "serve -p 5000"
   },
   "description": "Yet Another Toy Chat Web App",
   "main": "index.js",
   "repository": "https://github.com/mfeineis/kata-chatapp",
   "author": "Martin Feineis <mfeineis@users.noreply.github.com>",
   "license": "BSD-3-Clause",
+  "browserslist": [
+    "ie 11"
+  ],
   "devDependencies": {
     "elm": "^0.19.0-no-deps",
-    "serve": "^11.1.0"
+    "eslint": "^6.1.0",
+    "eslint-plugin-compat": "^3.3.0",
+    "eslint-plugin-es5": "^1.4.1",
+    "eslint-plugin-immutable": "^1.0.0",
+    "eslint-plugin-jest": "^22.14.0",
+    "rollup": "^1.17.0",
+    "rollup-plugin-commonjs": "^10.0.1",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "serve": "^11.1.0",
+    "terser": "^4.1.2"
   }
 }
