@@ -528,6 +528,14 @@ globalStyles =
             , textOverflow ellipsis
             , whiteSpace noWrap
             ]
+        , class (toClassName (ToolPanel Tools))
+            [ displayFlex
+            , flexDirection column
+            , fontSize (px 0)
+            , listStyle none
+            , margin zero
+            , padding zero
+            ]
         , class (toClassName ToolPanelMenuFloating)
             [ backgroundColor (hex "ffffff")
             , boxShadow4 (px 2) (px 0) (px 3) (hex "cccccc")
