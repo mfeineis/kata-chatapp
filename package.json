@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "yarn run build:elm-elements && yarn run build:filament && yarn run build:greeshka && elm make src/App.elm --output dist/app.js",
+    "build": "yarn run build:elm-elements && yarn run build:filament && yarn run build:greeshka && yarn run build:app",
+    "build:app": "elm make src/App.elm --output dist/app.js --optimize && NODE_ENV=production terser dist/app.js --compress 'pure_funcs=\"F2,F3,F4,F5,F6,F7,F8,F9,A2,A3,A4,A5,A6,A7,A8,A9\",pure_getters,keep_fargs=false,unsafe_comps,unsafe' | terser --mangle --output=dist/app.js",
     "build:elm-elements": "mkdir -p ./js/elm-elements/dist && cp ./js/elm-elements/src/elm-elements.js ./js/elm-elements/dist/elm-elements.development.js",
     "build:filament": "NODE_ENV=production $(npm bin)/rollup --config js/filament/rollup.config.js",
     "build:greeshka": "cp ./js/greeshka/src/greeshka.js ./js/greeshka/dist/greeshka.development.js && NODE_ENV=production terser ./js/greeshka/src/greeshka.js -o ./js/greeshka/dist/greeshka.js --mangle --compress --mangle-props keep_quoted",
